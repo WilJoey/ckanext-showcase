@@ -3,7 +3,6 @@
 {% set form_style = c.form_style or c.action %}
 
 <form id="dataset-edit" class="dataset-form form-horizontal" method="post" action="{{ action }}" data-module="basic-form" enctype="multipart/form-data">
-
   <input type="hidden" name="_ckan_phase" value="dataset_new_1" />
   {# pkg_name used in 3 stage edit #}
   <input type="hidden" name="pkg_name" value="{{ data.id }}" />
@@ -40,6 +39,17 @@
   {% endblock %}
 
   {% block metadata_fields %}
+
+
+  {# JOE extra links #}
+  {% block package_metadata_fields_custom %}
+    {% block custom_fields %}
+      {% snippet 'showcase/snippets/custom_form_fields.html', extras=data.extras, errors=errors, limit=2 %}
+    {% endblock %}
+  {% endblock %}
+
+
+
     {% block package_metadata_fields_url %}
       {{ form.input('url', label=_('External link'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-medium']) }}
     {% endblock %}

@@ -74,6 +74,17 @@
       {% endif %}
     {% endblock %}
 
+
+{% if pkg.extras %}
+  <h3>APP 連結下載</h3>
+  <p>
+    {% for extra in pkg.extras %}
+      <a class="btn btn-primary ckanext-showcase-launch" href="{{ extra.value }}" target="_blank"><i class="icon-external-link"></i>{{ extra.key }}</a>
+    {% endfor %}
+  </p>
+{% endif %}
+
+
     {% if pkg.url %}
       <p><a class="btn btn-primary ckanext-showcase-launch" href="{{ pkg.url }}" target="_blank"><i class="icon-external-link"></i> {{ _('Launch website') }}</a></p>
     {% endif %}
